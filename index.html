@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>IronCoach — Upper Body Plan 2026</title>
+<style>
+:root{--bg:#0b0d12;--c:#151a23;--c2:#1f2733;--t:#eef2f7;--m:#8b97a8;--a:#ff6b2c;--b:#c6ff3d}
+*{box-sizing:border-box;margin:0}
+body{font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--t);padding-bottom:84px}
+.w{max-width:760px;margin:auto;padding:14px;padding-top:calc(14px + env(safe-area-inset-top,0px))}@media(max-width:380px){.sr b.m{display:none}.ex svg{width:80px;height:50px}}
+.hero{background:linear-gradient(135deg,#ff6b2c,#c6ff3d 140%);color:#111;border-radius:22px;padding:20px;margin-bottom:14px}
+.hero h1{font-size:24px;letter-spacing:-.5px}.hero p{opacity:.8;font-size:13px}
+.pb{height:8px;background:#0003;border-radius:9px;margin-top:12px;overflow:hidden}.pb i{display:block;height:100%;background:#111;border-radius:9px}
+.card{background:var(--c);border:1px solid #ffffff12;border-radius:18px;padding:14px;margin-bottom:12px}
+h2{font-size:18px;margin:6px 0 10px}h3{font-size:15px}
+.m{color:var(--m);font-size:13px}
+.g{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+label.f{display:block;font-size:12px;color:var(--m)}
+input,select,button{font:inherit;font-size:16px;color:var(--t);background:var(--c2);border:1px solid #ffffff1a;border-radius:10px;padding:9px 10px;width:100%}
+button{cursor:pointer;background:var(--a);color:#111;font-weight:700;border:0}
+button.s{background:var(--c2);color:var(--t);border:1px solid #ffffff1a}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#0b0d12ee;backdrop-filter:blur(12px);display:flex;justify-content:space-around;padding:8px 4px calc(8px + env(safe-area-inset-bottom,0px));border-top:1px solid #ffffff14;z-index:5}
+.nav button{background:none;color:var(--m);width:auto;font-size:11px;padding:4px 2px;flex:1;min-width:0}.nav button.on{color:var(--b)}
+.nav span{display:block;font-size:19px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:6px}
+.chip{flex:none;width:auto;background:var(--c2);color:var(--t);border:1px solid #ffffff1a;padding:8px 14px}
+.chip.on{background:var(--b);color:#111}
+.eq{text-align:center;cursor:pointer;border:2px solid transparent;border-radius:16px;background:var(--c2);padding:10px}
+.eq.on{border-color:var(--b)}.eq svg{width:100%;height:auto;margin-bottom:6px}
+.eq b{font-size:12px;display:block}
+.ex{display:flex;gap:12px}.ex svg{flex:none;width:104px;height:65px}
+svg{background:radial-gradient(circle at 50% 35%,#3b475c,#161b24);border-radius:12px}.F{fill:#56637d}.P{fill:#ff6b2c}.M{fill:#c9d2e0}.K{fill:#1a1f28;stroke:#56637d;stroke-width:.8}svg.ch{background:none;width:100%;height:60px;margin-top:8px}.sr{display:flex;gap:6px;align-items:center;margin-top:8px}.sr input{flex:1;min-width:0;width:auto;text-align:center}.sr .st{margin:0}.an{margin-top:10px;font-size:13px;line-height:1.45;background:var(--c2);border-radius:12px;padding:9px 11px}
+.tag{display:inline-block;background:var(--c2);border-radius:20px;padding:2px 10px;font-size:12px;margin:4px 4px 0 0}.tag.hi{background:var(--a);color:#111;font-weight:700}
+.st{display:inline-block;margin:8px 6px 0 0}.st input{display:none}
+.st span{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--c2);border:2px solid #ffffff22;font-weight:700}
+.st input:checked+span{background:var(--b);color:#111;border-color:var(--b)}
+.row{display:flex;gap:8px;margin-top:10px}.row>*{flex:1}
+.wk{display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.wk.cur{border-color:var(--b)}.dl{color:var(--b)}
+.bar2{height:8px;background:var(--c2);border-radius:9px;overflow:hidden;margin-top:6px}.bar2 i{display:block;height:100%;background:linear-gradient(90deg,var(--a),var(--b))}
+#bar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(72px + env(safe-area-inset-bottom,0px));background:var(--b);color:#111;font-weight:700;border-radius:30px;padding:8px 18px;display:none;z-index:9}
+.warn{color:#ffb4a0;font-size:12px}
+</style></head><body>
+<div class="w"><div class="hero"><h1>🔥 IronCoach</h1><p id="hs"></p><div class="pb"><i id="hp"></i></div></div><div id="app"></div></div>
+<div id="bar"></div>
+<div class="nav" id="nav"></div>
+<script>
+const $=s=>document.querySelector(s);
+const EQ=[["cp","Chest Press Machine"],["pd","Pec Deck / Butterfly"],["lr","Lat Pulldown & Row Station"],["cb","Cable Handle / Bar Attachment"],["hm","Plate-Loaded Press (Incline/Shoulder)"],["bb","Barbell & Bench"],["db","Dumbbell"],["pu","Pull-up / Dip Bar"],["lg","Leg Press"]];
+const EN={bw:"Bodyweight"};EQ.forEach(e=>EN[e[0]]=e[1]);
+const IC={
+cp:'<rect class="K" x="112" y="26" width="20" height="40" rx="2"/><rect class="F" x="106" y="10" width="5" height="74"/><rect class="F" x="104" y="8" width="32" height="5" rx="2"/><rect class="F" x="26" y="86" width="112" height="5" rx="2"/><rect class="F" x="62" y="70" width="7" height="16"/><rect class="P" x="48" y="62" width="34" height="9" rx="4"/><rect class="P" x="84" y="22" width="9" height="44" rx="4"/><rect class="F" x="38" y="36" width="48" height="5" rx="2"/><rect class="M" x="32" y="31" width="7" height="15" rx="3"/>',
+pd:'<rect class="K" x="116" y="40" width="18" height="34" rx="2"/><rect class="F" x="72" y="12" width="16" height="74"/><rect class="F" x="30" y="86" width="100" height="5" rx="2"/><rect class="P" x="68" y="62" width="24" height="9" rx="4"/><rect class="P" x="74" y="30" width="12" height="30" rx="5"/><path class="F" d="M72 16L36 30v5l36-12zM88 16l36 14v5L88 23z"/><rect class="P" x="30" y="26" width="8" height="30" rx="4"/><rect class="P" x="122" y="26" width="8" height="30" rx="4"/><circle class="M" cx="80" cy="12" r="6"/>',
+lr:'<rect class="F" x="20" y="8" width="6" height="80"/><rect class="K" x="27" y="30" width="16" height="44" rx="2"/><rect class="F" x="20" y="6" width="50" height="5" rx="2"/><circle class="M" cx="66" cy="9" r="5"/><path d="M66 14V44" stroke="#c4cddb" stroke-width="1.6" fill="none"/><rect class="M" x="52" y="44" width="30" height="4" rx="2"/><rect class="P" x="76" y="64" width="34" height="9" rx="4"/><rect class="F" x="90" y="73" width="8" height="13"/><rect class="F" x="20" y="86" width="124" height="5" rx="2"/><rect class="P" x="70" y="54" width="9" height="9" rx="3"/><rect class="F" x="122" y="72" width="22" height="14" rx="2"/>',
+cb:'<path d="M80 4V30" stroke="#c4cddb" stroke-width="2" fill="none"/><circle class="K" cx="80" cy="34" r="4"/><rect class="M" x="77" y="38" width="6" height="10" rx="3"/><rect class="F" x="74" y="48" width="12" height="9" rx="2"/><rect class="K" x="26" y="56" width="34" height="14" rx="6"/><rect class="K" x="100" y="56" width="34" height="14" rx="6"/><rect class="M" x="58" y="61" width="44" height="4" rx="2"/>',
+hm:'<rect class="F" x="22" y="84" width="116" height="6" rx="2"/><path class="F" d="M30 84L54 30h8L40 84zM100 84L84 40h8l22 44z"/><path class="P" d="M50 74L82 38l8 7-26 32z"/><rect class="P" x="86" y="70" width="26" height="8" rx="3"/><rect class="F" x="56" y="22" width="60" height="5" rx="2" transform="rotate(-18 86 24)"/><circle class="M" cx="40" cy="18" r="13"/><circle class="K" cx="40" cy="18" r="5"/><circle class="M" cx="124" cy="22" r="11"/><circle class="K" cx="124" cy="22" r="4"/>',
+bb:'<rect class="F" x="38" y="22" width="5" height="62"/><rect class="F" x="117" y="22" width="5" height="62"/><rect class="F" x="30" y="86" width="100" height="5" rx="2"/><rect class="M" x="8" y="22" width="144" height="4" rx="2"/><rect class="K" x="12" y="10" width="7" height="28" rx="2"/><rect class="K" x="141" y="10" width="7" height="28" rx="2"/><rect class="K" x="21" y="14" width="6" height="20" rx="2"/><rect class="K" x="133" y="14" width="6" height="20" rx="2"/><rect class="P" x="52" y="62" width="58" height="10" rx="5"/><rect class="F" x="76" y="72" width="8" height="14"/>',
+db:'<rect class="M" x="48" y="47" width="64" height="6" rx="3"/><rect class="K" x="34" y="36" width="14" height="28" rx="3"/><rect class="K" x="112" y="36" width="14" height="28" rx="3"/><rect class="F" x="26" y="42" width="8" height="16" rx="2"/><rect class="F" x="126" y="42" width="8" height="16" rx="2"/>',
+pu:'<rect class="F" x="28" y="10" width="6" height="78"/><rect class="F" x="126" y="10" width="6" height="78"/><rect class="M" x="24" y="14" width="112" height="5" rx="2"/><rect class="P" x="50" y="14" width="10" height="5" rx="2"/><rect class="P" x="100" y="14" width="10" height="5" rx="2"/><rect class="F" x="18" y="88" width="30" height="5" rx="2"/><rect class="F" x="112" y="88" width="30" height="5" rx="2"/>',
+lg:'<path class="F" d="M20 88L96 30l8 8-72 50z"/><rect class="P" x="70" y="30" width="38" height="9" rx="4" transform="rotate(38 89 34)"/><rect class="M" x="104" y="52" width="40" height="7" rx="3" transform="rotate(-52 124 55)"/><rect class="K" x="116" y="20" width="30" height="40" rx="3"/><rect class="F" x="20" y="88" width="120" height="5" rx="2"/>',
+bw:'<circle class="P" cx="80" cy="22" r="10"/><path class="F" d="M64 40h32l6 26h-8l-4-14v34h-9V66h-4v22h-9V52l-4 14h-8z"/>'};
+const ico=e=>`<svg viewBox="0 0 160 100">${IC[e]}</svg>`;
+// slot: [equipment, nama latihan, faktor beban 10 rep dari BB; 0 = bodyweight]
+const X={
+chest:[["bb","Barbell Bench Press",.55],["db","Dumbbell Bench Press",.2],["cp","Chest Press Machine",.5],["bw","Push-up",0]],
+incl:[["hm","Plate-Loaded Incline Press",.35],["db","Incline Dumbbell Press",.17],["bw","Decline Push-up",0]],
+fly:[["pd","Pec Deck (Butterfly)",.35],["db","Dumbbell Fly",.08],["cb","Cable Fly",.08],["bw","Push-up Tempo Lambat",0]],
+vpull:[["lr","Lat Pulldown",.6],["pu","Pull-up (assisted/full)",0],["cb","Straight-Arm Pulldown (handle)",.25]],
+row:[["lr","Seated Cable Row",.5],["bb","Barbell Row",.5],["db","One-arm Dumbbell Row",.25]],
+ohp:[["hm","Plate-Loaded Shoulder Press",.3],["db","Dumbbell Shoulder Press",.17],["bb","Barbell Overhead Press",.35]],
+lat:[["db","Dumbbell Lateral Raise",.06],["cb","Cable Lateral Raise",.05]],
+rear:[["pd","Reverse Pec Deck (Rear Delt)",.25],["cb","Face Pull",.17],["db","Rear Delt Fly (bungkuk)",.05]],
+tri:[["cb","Triceps Pushdown (Bar/Handle)",.3],["db","Overhead DB Extension",.15],["pu","Dips (bench/bar)",0],["bb","Close-Grip Bench",.4]],
+bi:[["db","Dumbbell Curl",.12],["cb","Cable Curl (Bar)",.22],["bb","Barbell Curl",.25]],
+ham:[["db","Hammer Curl",.12],["cb","Rope Hammer Curl",.2]],
+leg:[["lg","Leg Press",1.2],["db","Goblet Squat",.25],["bb","Back Squat",.7]],
+hing:[["db","DB Romanian Deadlift",.22],["bb","Romanian Deadlift",.6]],
+calf:[["lg","Calf Raise (Leg Press)",.6],["bw","Calf Raise",0]],
+core:[["bw","Plank",0]]};
+const CP=["chest","incl","vpull","row","ohp","leg","hing"];
+const D={push:["Push — Dada, Bahu, Triceps",["chest","incl","fly","lat","tri"]],pull:["Pull — Punggung & Bisep",["vpull","row","rear","bi","ham"]],sa:["Bahu & Lengan",["ohp","lat","rear","tri","bi"]],uv:["Upper Volume",["incl","vpull","lat","tri","bi"]],leg:["Leg Ringan + Core",["leg","hing","calf","core"]]};
+const DN=["Sen","Sel","Kam","Sab"],DO=[0,1,3,5];
+const W=[[3,"10-12",1,"Fondasi"],[3,"10-12",1.03,"Fondasi"],[3,"10-12",1.06,"Fondasi"],[2,"10",.85,"Deload"],[4,"8-10",1.08,"Hipertrofi"],[4,"8-10",1.11,"Hipertrofi"],[4,"8-10",1.14,"Hipertrofi"],[3,"8",.9,"Deload"],[4,"6-8",1.17,"Kekuatan"],[4,"5-7",1.21,"Kekuatan"],[4,"4-6",1.25,"Kekuatan"],[2,"6",.9,"Deload"],[3,"3-5",1.3,"Tes PR 🏆"]];
+const dflt={p:{nama:"",usia:25,bb:70,tb:170,sex:1,lvl:1,start:"2026-10-05"},eq:{cp:1,pd:1,lr:1,cb:1,hm:1,bb:1,db:1},done:{},logs:{},adj:1,wk:0,day:0,tab:"set",firstSet:1};
+let S;try{S=JSON.parse(localStorage.getItem("ic2"))}catch(e){}S=S||dflt;S.sets=S.sets||{};S.hist=S.hist||{};if(S.firstSet)S.tab="set";
+const save=()=>{S.u=Date.now();try{localStorage.setItem("ic2",JSON.stringify(S))}catch(e){}window.cloud&&cloud.queue()};
+const CS={cfg:0,u:null,m:""};
+const csH=()=>!CS.cfg?`<p class="m">Firebase belum dikonfigurasi. Isi <b>firebaseConfig</b> di bagian bawah index.html (langkahnya ada di README.md).</p>`:CS.u?`<p>☁️ <b>${CS.u.email}</b></p><p class="m">${CS.m}</p><div class="row"><button onclick="cloud.push()">Sinkron sekarang</button><button class="s" onclick="cloud.out()">Keluar</button></div>`:`<p class="m">Login sekali. Setelah itu setiap catatan tersimpan otomatis ke cloud dan sinkron di semua perangkat.</p><button onclick="cloud.login()">Login dengan Google</button>${CS.m?`<p class="warn">${CS.m}</p>`:""}`;
+window.csr=()=>{const e=$("#cs");if(e)e.innerHTML=csH()};
+const dt=(w,i)=>{const d=new Date(S.p.start+"T00:00");d.setDate(d.getDate()+(w-1)*7+DO[i]);return d.toLocaleDateString("id-ID",{day:"numeric",month:"short"})};
+const cw=()=>S.wk||Math.min(13,Math.max(1,Math.floor((Date.now()-new Date(S.p.start+"T00:00"))/6048e5)+1));
+const sched=w=>[["push"],["pull"],["sa"],[w%2?"uv":"leg"]].map(x=>x[0]);
+const pick=k=>X[k].find(o=>S.eq[o[0]]||o[0]=="bw")||X[k][0];
+function wt(o,w){if(!o[2])return null;const p=S.p,v=p.bb*o[2]*[.7,1,1.2][p.lvl]*(p.sex?1:.6)*W[w-1][2]*S.adj,st=o[0]=="db"?1:2.5;return Math.max(st,Math.round(v/st)*st)}
+let T=0,TI;
+function bar(t){const b=$("#bar");b.textContent=t||"";b.style.display=t?"block":"none"}
+function toast(t){bar(t);setTimeout(()=>T<=0&&bar(),3500)}
+function tm(s){clearInterval(TI);T=s;bar("⏱ Istirahat "+T+" dtk");TI=setInterval(()=>{T--;if(T<=0){clearInterval(TI);toast("✅ Istirahat selesai — set berikutnya!")}else bar("⏱ Istirahat "+T+" dtk")},1000)}
+function chk(k,v,r){S.done[k]=v;save();if(v)tm(r)}
+function nxt(n,w,d){for(let x=w;x<=13;x++){const q=sched(x);for(let i=0;i<4;i++){if(x==w&&i<=d)continue;if(D[q[i]][1].some(k=>pick(k)[1]==n))return[x,i]}}return null}
+const hr=w=>{const g=W[w-1][1].split("-");return[+g[0],+g[g.length-1]]};
+const sess=n=>Object.values(S.hist[n]||{}).sort((a,b)=>a.wk*10+a.d-b.wk*10-b.d);
+function ana(k,w){const o=pick(k),n=o[1],H=sess(n),l=H[H.length-1];
+if(!l)return{c:"#8b97a8",t:"🧠 Coach: belum ada data. Isi beban & rep tiap set (atau cukup centang set yang sesuai rencana)."};
+const[lo,hi]=hr(l.wk),P=W[l.wk-1][0],ws=Math.max(...l.s.map(x=>x[0])),ss=l.s.filter(x=>x[0]==ws),mn=Math.min(...ss.map(x=>x[1])),st=o[0]=="db"?2:2.5;let c,t;
+if(W[l.wk-1][3]=="Deload"){c="#ffd24a";t="🛌 Minggu deload: jangan naikkan beban, fokus teknik & pemulihan."}
+else if(ss.length>=P&&mn>=hi){c="#c6ff3d";t=o[2]?`✅ Kamu mampu! Semua ${P} set di ${ws} kg tembus ${hi} rep. Naikkan ke ${ws+st} kg`:`✅ Semua set tembus ${hi} rep. Naikkan kesulitan (tempo lambat / beban tambahan)`}
+else if(mn>=lo){c="#ffd24a";t=`🟡 ${ss.length}/${P} set tercatat, rep terendah ${mn}. Tahan ${ws} kg dan kejar ${hi} rep di semua set`}
+else{c="#ff8a6a";t=o[2]?`🔻 Rep terendah ${mn} (< ${lo}). Turunkan ke ${Math.round(ws*.92/st)*st} kg`:`🔻 Rep terendah ${mn} (< ${lo}). Pakai variasi yang lebih mudah`}
+const m=nxt(n,l.wk,l.d),pl=wt(o,l.wk);return{c,t:t+(m?` — di sesi ${DN[m[1]]} ${dt(m[0],m[1])} (Minggu ${m[0]}).`:".")+(pl&&ws>=pl*1.05?" 🚀 Lebih kuat dari rencana.":pl&&ws<pl*.9?" ⚠ Di bawah rencana, jangan dipaksa.":"")}}
+const anH=(k,w)=>{const a=ana(k,w);return `<span style="color:${a.c}">${a.t}</span>`};
+function ck(id,j,k,w,d,v,rs){S.done[id+"-"+j]=v;const a=$("#lw"+id+"-"+j),b=$("#lr"+id+"-"+j);if(v){if(a.value==="")a.value=a.placeholder;if(b.value==="")b.value=b.placeholder;tm(rs)}sv(id,k,w,d)}
+function sv(id,k,w,d){const n=pick(k)[1],s=[];for(let q=0;q<8;q++){const a=$("#lw"+id+"-"+q),b=$("#lr"+id+"-"+q);if(!a)break;const x=+a.value,r=+b.value;if(r>0){s.push([x,r]);S.sets[id+"-"+q]={w:x,r}}else delete S.sets[id+"-"+q]}
+S.hist[n]=S.hist[n]||{};if(s.length)S.hist[n][w+"-"+d]={wk:w,d,s};else delete S.hist[n][w+"-"+d];
+s.forEach(([x,r])=>{const e=(x||1)*(1+r/30),b=S.logs[n]||{e:0};if(e>b.e){S.logs[n]={e,w:x,r};if(b.e)toast("🔥 PR baru: "+n+" "+x+"kg × "+r)}});save();$("#an"+id).innerHTML=anH(k,w)}
+function hx(n){const H=sess(n);if(!H.length)return"";const v=H.map(h=>Math.max(...h.s.map(x=>(x[0]||1)*(1+x[1]/30)))),mx=Math.max(...v),mi=Math.min(...v),P=v.map((y,i)=>[v.length>1?i/(v.length-1)*280+10:150,mx==mi?30:50-(y-mi)/(mx-mi)*40]);
+return `<svg class="ch" viewBox="0 0 300 60"><polyline points="${P.join(" ")}" fill="none" stroke="#c6ff3d" stroke-width="3" stroke-linejoin="round"/>${P.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="#ff6b2c"/>`).join("")}</svg><div class="m">Tren estimasi 1RM · ${H.length} sesi</div>`+H.slice(-5).reverse().map(h=>`<div class="m">M${h.wk} ${DN[h.d]} ${dt(h.wk,h.d)}: ${h.s.map(x=>x[0]+"×"+x[1]).join(", ")}</div>`).join("")}
+function ex(){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));a.download="ironcoach-backup-"+new Date().toISOString().slice(0,10)+".json";a.click()}
+function im(f){if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(!o.p||!o.eq)throw 0;S=Object.assign({},dflt,o);S.sets=S.sets||{};S.hist=S.hist||{};save();R();toast("✅ Data berhasil diimpor")}catch(e){toast("❌ File tidak valid")}};r.readAsText(f)}
+function tab(t){S.tab=t;S.firstSet=0;save();R()}
+function sp(k,v){S.p[k]=isNaN(v)||k=="start"||k=="nama"?v:+v;save();if(k=="bb"||k=="tb")$("#bmi").textContent=bmi()}
+const bmi=()=>{const b=S.p.bb/Math.pow(S.p.tb/100,2);return b.toFixed(1)+" — "+(b<18.5?"Kurus":b<25?"Normal":b<30?"Overweight":"Obesitas")};
+function exCard(k,i,w,d){const o=pick(k),r=W[w-1][1],s=k=="core"?3:W[w-1][0],c=CP.includes(k),kg=wt(o,w),id=`${w}${d}${i}`,rs=c?150:75,ok=S.eq[o[0]]||o[0]=="bw",hi=k=="core"?45:hr(w)[1],b=S.logs[o[1]],a=`'${id}','${k}',${w},${d}`;let h="";
+for(let j=0;j<s;j++){const key=id+"-"+j,v=S.sets[key]||{};h+=`<div class="sr"><label class="st"><input type="checkbox" ${S.done[key]?"checked":""} onchange="ck('${id}',${j},'${k}',${w},${d},this.checked,${rs})"><span>${j+1}</span></label><input type="number" id="lw${id}-${j}" value="${v.w!=null?v.w:""}" placeholder="${kg||0}" onchange="sv(${a})"><b class="m">kg ×</b><input type="number" id="lr${id}-${j}" value="${v.r||""}" placeholder="${hi}" onchange="sv(${a})"><b class="m">rep</b></div>`}
+return `<div class="card"><div class="ex">${ico(o[0])}<div><h3>${o[1]}</h3><div class="m">${EN[o[0]]}${ok?"":' <span class="warn">⚠ aktifkan alat di tab Setup</span>'}</div></div></div>
+<span class="tag hi">${s} set × ${k=="core"?"30-45 dtk":r+" rep"}</span><span class="tag">${kg?kg+" kg"+(o[0]=="db"?" / tangan":""):"Berat badan"}</span><span class="tag">⏱ ${rs} dtk</span>${b?`<span class="tag">🏆 ${b.w}×${b.r}</span>`:""}
+${h}<div class="an" id="an${id}">${anH(k,w)}</div></div>`}
+function vSet(){const p=S.p;return `<div class="card"><h2>👤 Profil Atlet</h2><div class="g">
+<label class="f">Nama<input value="${p.nama}" onchange="sp('nama',this.value)"></label>
+<label class="f">Usia<input type="number" value="${p.usia}" onchange="sp('usia',this.value)"></label>
+<label class="f">Berat (kg)<input type="number" value="${p.bb}" onchange="sp('bb',this.value)"></label>
+<label class="f">Tinggi (cm)<input type="number" value="${p.tb}" onchange="sp('tb',this.value)"></label>
+<label class="f">Gender<select onchange="sp('sex',this.value)"><option value="1" ${p.sex?"selected":""}>Pria</option><option value="0" ${p.sex?"":"selected"}>Wanita</option></select></label>
+<label class="f">Level<select onchange="sp('lvl',this.value)">${["Pemula (<6 bln)","Menengah (6-24 bln)","Lanjut (>2 thn)"].map((x,i)=>`<option value="${i}" ${p.lvl==i?"selected":""}>${x}</option>`)}</select></label>
+<label class="f">Mulai program (Senin)<input type="date" value="${p.start}" onchange="sp('start',this.value);R()"></label></div>
+<p class="m" style="margin-top:10px">BMI: <b id="bmi">${bmi()}</b>. Beban awal dihitung otomatis dari berat badan, gender & level, lalu naik bertahap tiap minggu.</p></div>
+<div class="card"><h2>🏋️ Alat yang tersedia di gym-mu</h2><p class="m">Ketuk untuk memilih. Latihan otomatis memakai alat yang kamu centang.</p><div class="g" style="margin-top:10px">${EQ.map(e=>`<div class="eq ${S.eq[e[0]]?"on":""}" onclick="S.eq['${e[0]}']=!S.eq['${e[0]}'];save();R()">${ico(e[0])}<b>${e[1]}</b></div>`).join("")}</div>
+<button style="margin-top:14px" onclick="tab('lat')">Mulai Latihan →</button></div><div class="card"><h2>☁️ Cloud Sync (Firebase)</h2><div id="cs">${csH()}</div></div><div class="card"><h2>💾 Backup Data</h2><p class="m">Simpan seluruh riwayat latihanmu ke file, atau pulihkan di HP/laptop lain.</p><div class="row"><button onclick="ex()">⬇ Export</button><button class="s" onclick="$('#imp').click()">⬆ Import</button></div><input id="imp" type="file" accept=".json" style="display:none" onchange="im(this.files[0])"></div>`}
+function vLat(){const w=cw(),s=sched(w),d=Math.min(S.day,3),k=s[d];
+return `<div class="chips">${W.map((x,i)=>`<button class="chip ${i+1==w?"on":""}" onclick="S.wk=${i+1};save();R()">M${i+1}</button>`).join("")}</div>
+<div class="card"><h2>Minggu ${w} — ${W[w-1][3]}</h2><p class="m">Target: ${W[w-1][0]} set × ${W[w-1][1]} rep, sisakan 1–2 rep cadangan (kecuali tes PR). ${S.adj<1?`<br><b class="dl">Beban disesuaikan ${Math.round(S.adj*100)}% (lihat tab Skip/Sakit)</b>`:""}</p></div>
+<div class="chips">${s.map((x,i)=>`<button class="chip ${i==d?"on":""}" onclick="S.day=${i};save();R()">${DN[i]} ${dt(w,i)}<br><small>${D[x][0].split(" ")[0]}</small></button>`).join("")}</div>
+<h2>${D[k][0]}</h2>${D[k][1].map((x,i)=>exCard(x,i,w,d)).join("")}
+<p class="m">Pemanasan: 5 menit kardio ringan + 1–2 set ringan latihan pertama. Hari lain: istirahat / jalan santai.</p>`}
+function vJad(){const c=cw();return `<h2>📅 Roadmap 13 Minggu</h2>`+W.map((x,i)=>{const n=i+1,tot=sched(n).reduce((a,k,d)=>a+D[k][1].length*(x[0]),0),dn=Object.keys(S.done).filter(k=>S.done[k]&&k.startsWith(n+"")&&k.split("-")[0].length>=3&&+k.split("-")[0].slice(0,-2)==n).length;
+return `<div class="card wk ${n==c?"cur":""}" onclick="S.wk=${n};S.day=0;tab('lat')"><div><h3>Minggu ${n} · ${x[3]}</h3><div class="m">${dt(n,0)} – ${dt(n,3)} · ${x[0]}×${x[1]} · beban ×${x[2]}</div><div class="m">Sen Push · Sel Pull · Kam Bahu&Lengan · Sab ${n%2?"Upper Volume":"Leg Ringan"}</div></div><div class="dl">${dn}/${tot}</div></div>`}).join("")}
+function vPR(){const w=cw();let g=0,n=0;const L=["chest","incl","row","vpull","ohp","tri","bi"];
+const cards=L.map(k=>{const o=pick(k),t=wt(o,13),b=S.logs[o[1]],te=t?t*(1+4/30):0,pc=b&&te?Math.min(100,b.e/te*100):0,a=ana(k,w);if(a.c!="#8b97a8"){n++;if(a.c=="#c6ff3d")g++}
+return `<div class="card"><div class="ex">${ico(o[0])}<div><h3>${o[1]}</h3><div class="m">${t?`Target PR M13: <b class="dl">${t} kg × 4</b>`:"Target: +3 rep dari rekor pertamamu"}</div><div class="m">Terbaik: ${b?b.w+" kg × "+b.r:"belum ada data"}</div></div></div><div class="bar2"><i style="width:${pc}%"></i></div><div class="an" style="color:${a.c}">${a.t}</div>${hx(o[1])}</div>`}).join("")+Object.keys(S.hist).filter(n=>S.hist[n]&&Object.keys(S.hist[n]).length&&!L.some(k=>pick(k)[1]==n)).map(n=>`<div class="card"><h3>${n}</h3>${hx(n)}</div>`).join("");
+return `<h2>🧠 Analisis Coach</h2><div class="card"><h3>${n?`${g} dari ${n} latihan siap naik beban`:"Belum ada data latihan"}</h3><p class="m" style="margin-top:6px">Metode <b>double progression</b>: tetap di beban yang sama sampai kamu mencapai batas atas rep (misal 12 rep) di semua set, lalu naikkan 2.5 kg (dumbbell 1–2 kg) di sesi berikutnya untuk gerakan itu. Gerakan compound biasanya naik tiap 1–2 minggu, isolasi tiap 2–3 minggu. Minggu 1 = adaptasi, jangan naik dulu. Minggu deload: turunkan beban, bukan naik.</p></div>`+cards+`<div class="card"><h3>Kalau gagal naik 2 sesi berturut-turut</h3><p class="m">Cek tidur &amp; istirahat antar set. Jika tetap macet, turunkan 5–10% dan bangun lagi. Otot tumbuh dari progres bertahap, bukan dari memaksa beban.</p></div>`}
+function vSkip(){return `<h2>🤒 Skip & Sakit — Coach Mode</h2><div class="card"><div class="g"><label class="f">Kondisi<select id="k"><option value="s">Skip biasa (sibuk/malas)</option><option value="a">Sakit ringan di atas leher (pilek, sakit tenggorokan)</option><option value="d">Demam / sakit badan / flu berat / cedera</option></select></label><label class="f">Berapa hari absen?<input id="h" type="number" value="3"></label></div><button style="margin-top:10px" onclick="adv()">Beri saran coach</button><div id="ad" style="margin-top:12px"></div></div>
+<div class="card"><h3>Aturan emas</h3><p class="m">• Jangan "balas dendam" dua sesi dalam sehari — sesi terlewat dibuang, lanjut sesuai jadwal.<br>• Prioritas minggu padat: Push &amp; Pull. Leg ringan boleh dilewati.<br>• Absen Kamis? Geser ke Jumat. Absen Sabtu? Lewati saja.<br>• Setelah beban turun, naikkan lagi bertahap 1–2 minggu lalu tekan "Reset".</p><div class="row"><button class="s" onclick="S.adj=1;save();toast('Beban kembali normal');R()">Reset beban ke normal</button><button class="s" onclick="shift()">Geser jadwal +1 minggu</button></div></div>`}
+function adv(){const k=$("#k").value,h=+$("#h").value||0;let a,t;
+if(k=="d"){a=h<=3?.95:h<=7?.9:.85;t="🛑 Istirahat total sampai bebas demam minimal 24–48 jam. Jika demam >3 hari, nyeri dada, atau sesak → periksa ke dokter. Setelah pulih: mulai dengan 2 set per latihan, RPE ringan, dan beban turun "+Math.round((1-a)*100)+"% selama 1–2 minggu. Jangan lompati tes PR sebelum minggu 13."}
+else if(k=="a"){a=.9;t="🟡 Boleh latihan ringan jika gejala hanya di atas leher dan tidak demam: kurangi 1 set, beban 85–90%, hindari sampai gagal. Kalau terasa lemas atau memburuk, istirahat saja."}
+else a=h<=3?1:h<=7?.95:h<=14?.9:h<=28?.85:.75,t=h<=3?"✅ Aman — lanjut sesuai jadwal tanpa perubahan beban.":h<=7?"Turunkan beban 5% di minggu ini, lalu naik normal.":h<=14?"Turunkan 10% dan ulangi minggu terakhir yang kamu jalani (tombol geser jadwal).":h<=28?"Turunkan 15%, ulang 1–2 minggu terakhir.":"Mulai ulang dari fase Fondasi dengan 75% beban agar sendi dan tendon siap lagi.";
+$("#ad").innerHTML=`<div class="card" style="background:var(--c2)"><p>${t}</p><button style="margin-top:10px" onclick="S.adj=${a};save();toast('Beban diset ${Math.round(a*100)}%');R()">Terapkan beban ${Math.round(a*100)}%</button></div>`}
+function shift(){const d=new Date(S.p.start+"T00:00");d.setDate(d.getDate()+7);S.p.start=d.toISOString().slice(0,10);save();toast("Jadwal digeser 1 minggu");R()}
+function vRec(){const L=[["😴","Tidur 7–9 jam","Otot tumbuh saat istirahat. Tidur <6 jam menurunkan performa dan pemulihan."],["⏱","Istirahat antar set","Compound 2–3 menit, isolasi 60–90 detik. Timer otomatis menyala saat set dicentang."],["📆","Jangan latih otot yang sama <48 jam","Jadwal ini memberi jeda 48–72 jam untuk tiap grup otot utama."],["🔄","Deload tiap minggu ke-4","Minggu 4, 8, 12: volume dikurangi agar sendi pulih dan beban berikutnya lebih kuat."],["🔥","Pemanasan wajib","5 menit kardio, mobilitas bahu, lalu 1–2 set ringan sebelum latihan utama."],["🚩","Sinyal bahaya","Nyeri tajam di sendi, kesemutan, atau teknik rusak → stop, turunkan beban, atau ganti alat."],["💧","Cairan & aktivitas ringan","Minum cukup, jalan kaki 20–30 menit di hari libur untuk bantu pemulihan."]];return `<h2>🛌 Recovery</h2>`+L.map(x=>`<div class="card"><h3>${x[0]} ${x[1]}</h3><p class="m">${x[2]}</p></div>`).join("")+`<p class="m">Rekomendasi umum, bukan saran medis. Konsultasikan ke dokter jika punya riwayat cedera atau penyakit.</p>`}
+function R(){const w=cw();$("#hs").textContent=`${S.p.nama?"Halo "+S.p.nama+"! ":""}Minggu ${w}/13 · ${W[w-1][3]} · target tes PR akhir Desember 2026`;$("#hp").style.width=w/13*100+"%";
+const T={set:["⚙️","Setup",vSet],lat:["💪","Latihan",vLat],jad:["📅","Jadwal",vJad],pr:["🧠","Coach",vPR],skip:["🤒","Skip/Sakit",vSkip],rec:["🛌","Recovery",vRec]};
+$("#nav").innerHTML=Object.entries(T).map(([k,v])=>`<button class="${S.tab==k?"on":""}" onclick="tab('${k}')"><span>${v[0]}</span>${v[1]}</button>`).join("");$("#app").innerHTML=T[S.tab][2]();window.scrollTo(0,0)}
+R();
+</script>
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import{getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import{getFirestore,doc,getDoc,setDoc}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+// ===== ISI DENGAN CONFIG DARI FIREBASE CONSOLE (Project settings > Your apps > Web app) =====
+const firebaseConfig={apiKey:"ISI_API_KEY",authDomain:"ISI_PROJECT.firebaseapp.com",projectId:"ISI_PROJECT_ID",appId:"ISI_APP_ID"};
+// ==========================================================================================
+if(!firebaseConfig.apiKey.startsWith("ISI")){
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);let q;CS.cfg=1;
+const ref=()=>doc(db,"users",auth.currentUser.uid);
+const push=async()=>{if(!auth.currentUser)return;try{CS.m="⏳ Menyimpan…";csr();await setDoc(ref(),{data:JSON.stringify(S),u:S.u||0});CS.m="✅ Tersimpan "+new Date().toLocaleTimeString("id-ID")}catch(e){CS.m="❌ "+(e.code||e.message)}csr()};
+window.cloud={push,queue(){clearTimeout(q);q=setTimeout(push,1500)},login:()=>signInWithPopup(auth,new GoogleAuthProvider()).catch(e=>{CS.m="Login gagal: "+e.code;csr()}),out:()=>signOut(auth)};
+onAuthStateChanged(auth,async u=>{CS.u=u;if(u){try{const d=await getDoc(ref());if(d.exists()&&d.data().u>(S.u||0)){const tb=S.tab;S=Object.assign({},dflt,JSON.parse(d.data().data));S.sets=S.sets||{};S.hist=S.hist||{};S.tab=tb;S.firstSet=0;S.u=d.data().u;try{localStorage.setItem("ic2",JSON.stringify(S))}catch(e){}CS.m="✅ Data diambil dari cloud";R()}else await push()}catch(e){CS.m="❌ "+(e.code||e.message)}}csr()});
+}
+</script>
+</body></html>
